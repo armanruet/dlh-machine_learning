@@ -4,4 +4,4 @@
 
 def matrix_transpose(matrix):
     """defining the function"""
-    return [row for row in zip(*matrix)]
+    return [list(row) for row in zip(*matrix)]
