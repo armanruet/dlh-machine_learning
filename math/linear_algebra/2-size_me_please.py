@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 """Shape of a matrix"""
+
+
 def matrix_shape(matrix):
     """defining the function"""
     shape = []
