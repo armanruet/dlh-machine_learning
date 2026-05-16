@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-
+"""Shape of a matrix"""
 def matrix_shape(matrix):
+    """defining the function"""
     shape = []
     x = matrix
     while isinstance(x, list) and len(x) > 0:
