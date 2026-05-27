@@ -1,4 +1,4 @@
---resetting email trigger
+-- resetting email trigger
 DROP TRIGGER IF EXISTS reset_valid_email;
 CREATE TRIGGER reset_valid_email
 BEFORE UPDATE ON users
