@@ -7,10 +7,10 @@ def determinant(matrix):
     """defining the function"""
     if matrix == [[]]:
         return 1
-    if not matrix:
-        return TypeError("matrix must be a list of lists")
+    if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
+        raise TypeError("matrix must be a list of lists")
     if len(matrix) != len(matrix[0]):
-        return ValueError("matrix must be a square matrix")
+        raise ValueError("matrix must be a square matrix")
     if len(matrix) == 1:
         return matrix[0][0]
     if len(matrix) == 2:
