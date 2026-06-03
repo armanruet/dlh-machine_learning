@@ -5,7 +5,8 @@
 def poly_integral(poly, C=0):
     """defining the function"""
     poly_f = [C]
-    if not isinstance(poly, list) and not isinstance(C, int):
+    if not isinstance(poly, list) and not isinstance(C, int)\
+            or not all(isinstance(i, int) for i in poly):
         return None
     if len(poly) == 1:
         return poly
