@@ -3,6 +3,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def frequency():
     """Func"""
     np.random.seed(5)
@@ -11,4 +12,4 @@ def frequency():
     plt.title("Project A")
     plt.xlabel("Grades")
     plt.ylabel("Number of Students")
-    plt.bar()
+    plt.bar(student_grades, bins=10, edgecolor='black')
