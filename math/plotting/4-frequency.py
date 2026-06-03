@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+"""Defining the prog"""
+import numpy as np
+import matplotlib.pyplot as plt
+
+def frequency():
+    """Func"""
+    np.random.seed(5)
+    student_grades = np.random.normal(68, 15, 50)
+    plt.figure(figsize=(6.4, 4.8))
+    plt.title("Project A")
+    plt.xlabel("Grades")
+    plt.ylabel("Number of Students")
+    plt.bar()
