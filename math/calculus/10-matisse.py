@@ -16,5 +16,4 @@ def poly_derivative(poly):
             poly_f.append(poly[i]*i)
     if all(x == 0 for x in poly_f):
         return [0]
-    else:
-        return poly_f
+    return poly_f
