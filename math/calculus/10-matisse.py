@@ -7,6 +7,8 @@ def poly_derivative(poly):
     poly_f = []
     if not isinstance(poly, list):
         return None
+    if len(poly) == 1:
+        return [0]
     for i in range(1, len(poly)):
         if poly[i] == 0:
             poly_f.append(0)
