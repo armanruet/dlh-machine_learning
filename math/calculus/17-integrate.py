@@ -14,6 +14,6 @@ def poly_integral(poly, C=0):
     for i in range(0, len(poly)):
         check = poly[i]/(i+1)
         poly_f.append(int(check) if check.is_integer() else check)
-    if all(x == 0 for x in poly_f):
-        return [0]
-    return poly_f
+   while len(poly_f) > 1 and poly_f[-1] == 0:
+        poly_f.pop()
+   return poly_f
