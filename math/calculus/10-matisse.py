@@ -5,10 +5,13 @@
 def poly_derivative(poly):
     """defining the function"""
     poly_f = []
-    if not isinstance(poly, list):
+    if not isinstance(poly, list) or len(poly) == 0:
         return None
     if len(poly) == 1:
         return [0]
+    if not all(type(i) in (int, float) for i in poly):
+        return None
+
     for i in range(1, len(poly)):
         if poly[i] == 0:
             poly_f.append(0)
