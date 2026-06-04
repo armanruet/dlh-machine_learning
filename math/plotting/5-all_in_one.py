@@ -28,6 +28,7 @@ def all_in_one():
     np.random.seed(5)
     student_grades = np.random.normal(68, 15, 50)
     plt.figure(figsize=(10, 8))
+    plt.suptitle("All in One")
     # Top-left
     ax1 = plt.subplot2grid((3, 2), (0, 0))
     plt.xlim(0, 10)
