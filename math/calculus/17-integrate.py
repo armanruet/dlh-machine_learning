@@ -4,12 +4,13 @@
 
 def poly_integral(poly, C=0):
     """defining the function"""
-    poly_f = [C]
-    if not isinstance(poly, list) and not isinstance(C, int)\
-            or not all(isinstance(i, int) for i in poly):
+    if not isinstance(C, int) or isinstance(C, bool):
         return None
-    if len(poly) == 1:
-        return poly
+    poly_f = [C]
+    if not isinstance(poly, list) or len(poly) == 0:
+        return None
+    if not all(type(i) in (int, float) for i in poly):
+        return None
     for i in range(0, len(poly)):
         check = poly[i]/(i+1)
         poly_f.append(int(check) if check.is_integer() else check)
