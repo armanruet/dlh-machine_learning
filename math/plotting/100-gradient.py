@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
+"""Module for plotting gradient"""
 import numpy as np
 import matplotlib.pyplot as plt
 
 
 def gradient():
+    """Creates a scatter plot"""
 
     np.random.seed(5)
 
@@ -17,5 +19,4 @@ def gradient():
     plt.xlabel('x coordinate (m)')
     plt.ylabel('y coordinate (m)')
     plt.title('Mountain Elevation')
-    plt.tight_layout()
     plt.show()
