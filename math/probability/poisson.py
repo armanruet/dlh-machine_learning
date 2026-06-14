@@ -28,3 +28,10 @@ class Poisson:
             fact *= i
         e = 2.7182818285
         return (e ** -self.lambtha * self.lambtha ** k) / fact
+
+    def cdf(self, k):
+        """defining CDF"""
+        k = int(k)
+        if k < 0:
+            return 0
+        return sum(self.pmf(i) for i in range(k + 1))
