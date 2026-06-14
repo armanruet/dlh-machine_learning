@@ -2,6 +2,9 @@
 """Class to represents a poisson distribution"""
 
 
+import numpy as np
+
+
 class Poisson:
     """defining the class"""
 
@@ -17,3 +20,23 @@ class Poisson:
             if len(data) < 2:
                 raise ValueError("data must contain multiple values")
             self.lambtha = float(sum(data) / len(data))
+
+    def pmf(self, k):
+        """Calculating PMF"""
+        k = int(k)
+        if k < 0:
+            return 0
+        fact = 1
+        for i in range(2, k+1):
+            fact *= i
+        e = 2.7182818285
+        return (e ** -self.lambtha * self.lambtha ** k) / fact
+
+
+np.random.seed(0)
+data = np.random.poisson(5., 100).tolist()
+p1 = Poisson(data)
+print('P(9):', p1.pmf(9))
+
+p2 = Poisson(lambtha=5)
+print('P(9):', p2.pmf(9))
