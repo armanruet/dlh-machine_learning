@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 """Class to represents a poisson distribution"""
 
-
-import numpy as np
-
-
 class Poisson:
     """defining the class"""
 
