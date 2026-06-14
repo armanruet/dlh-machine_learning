@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Class to represents a poisson distribution"""
 
+
 class Poisson:
     """defining the class"""
 
@@ -27,4 +28,3 @@ class Poisson:
             fact *= i
         e = 2.7182818285
         return (e ** -self.lambtha * self.lambtha ** k) / fact
-
