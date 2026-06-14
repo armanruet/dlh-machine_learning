@@ -32,11 +32,3 @@ class Poisson:
         e = 2.7182818285
         return (e ** -self.lambtha * self.lambtha ** k) / fact
 
-
-np.random.seed(0)
-data = np.random.poisson(5., 100).tolist()
-p1 = Poisson(data)
-print('P(9):', p1.pmf(9))
-
-p2 = Poisson(lambtha=5)
-print('P(9):', p2.pmf(9))
