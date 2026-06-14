@@ -2,7 +2,7 @@
 """Class to represents a poisson distribution"""
 
 
-class Poisson:
+class Exponential:
     """defining the class"""
 
     def __init__(self, data=None, lambtha=1.):
