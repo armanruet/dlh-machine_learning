@@ -3,8 +3,6 @@
 """class Normal that represents a normal distribution"""
 
 
-import numpy as np
-
 
 class Normal:
     """defining the class"""
