@@ -2,8 +2,17 @@
 """creating a Class"""
 
 
+import numpy as np
+
+
 class Binomial:
     """defining the class"""
+    @staticmethod
+    def fact(n):
+        """def fact"""
+        if n == 0:
+            return 1
+        return n * Binomial.fact(n - 1)
 
     def __init__(self, data=None, n=1, p=0.5):
         """initiating the constructor"""
@@ -29,3 +38,13 @@ class Binomial:
 
             self.n = n
             self.p = p
+
+    def pmf(self, k):
+        """defining pmf"""
+        k = int(k)
+
+        if k < 0 or k > self.n:
+            return 0
+        coefficient = Binomial.fact(
+            self.n) / (Binomial.fact(k) * Binomial.fact(self.n - k))
+        return coefficient * (self.p ** k) * ((1 - self.p) ** (self.n - k))
