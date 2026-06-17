@@ -2,8 +2,6 @@
 """creating a Class"""
 
 
-
-
 class Binomial:
     """defining the class"""
     @staticmethod
