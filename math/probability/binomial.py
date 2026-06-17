@@ -2,7 +2,6 @@
 """creating a Class"""
 
 
-import numpy as np
 
 
 class Binomial:
