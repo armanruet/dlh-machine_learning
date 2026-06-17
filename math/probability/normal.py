@@ -42,6 +42,7 @@ class Normal:
         return pdf
 
     def cdf(self, x):
+        """defining the func"""
         PI = 3.1415926536
         value = (x - self.mean) / (self.stddev * (2 ** 0.5))
 
