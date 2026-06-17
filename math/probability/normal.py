@@ -23,3 +23,11 @@ class Normal:
             for i in range(len(data)):
                 x += (data[i] - self.mean) ** 2
             self.stddev = float((x / len(data)) ** 0.5)
+
+    def z_score(self, x):
+        """defining the function"""
+        return (x-self.mean)/self.stddev
+
+    def x_value(self, z):
+        """defining the function"""
+        return z*self.stddev + self.mean
