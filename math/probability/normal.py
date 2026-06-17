@@ -40,3 +40,13 @@ class Normal:
         exponent = -((x - self.mean) ** 2) / (2 * self.stddev ** 2)
         pdf = coefficient * (E ** exponent)
         return pdf
+
+    def cdf(self, x):
+        PI = 3.1415926536
+        value = (x - self.mean) / (self.stddev * (2 ** 0.5))
+
+        erf = (2 / PI ** 0.5) * (value - (value ** 3)
+                                 / 3 + (value ** 5) / 10 - (value ** 7) / 42 +
+                                 (value ** 9) / 216)
+
+        return 0.5 * (1 + erf)
