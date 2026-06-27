@@ -19,4 +19,3 @@ class MultiNormal:
         centered = data - self.mean
         self.cov = (centered @ centered.T) / (n - 1)
         self.cov = self.cov.astype(float)
-
