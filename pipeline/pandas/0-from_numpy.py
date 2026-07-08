@@ -6,4 +6,5 @@ import pandas as pd
 
 def from_numpy(array):
     """defining the function"""
-    return pd.DataFrame(array)
+    abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    return pd.DataFrame(array, columns=list(abc[:len(array[0])]))
