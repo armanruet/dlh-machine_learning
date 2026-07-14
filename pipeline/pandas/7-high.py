@@ -4,4 +4,4 @@
 
 def high(df):
     """def func"""
-    return return df.sort_values(by="High", ascending=False)
+    return df.sort_values(by="High", ascending=False)
