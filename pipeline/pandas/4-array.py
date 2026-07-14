@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """Renames and reformats a DataFrame's Timestamp column."""
-import pandas as pd
 
 
 def array(df):
