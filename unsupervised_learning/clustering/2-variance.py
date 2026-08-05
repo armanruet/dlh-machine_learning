@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Doc"""
+"""
+Dtotal intra-cluster variance oc
+"""
 import numpy as np
 
 
