@@ -50,7 +50,7 @@ class Neuron:
         return predictions, cost
 
     def gradient_descent(self, X, Y, A, alpha=0.05):
-        """GD"""
+        """GD calculation"""
         m = X.shape[1]
         dZ = A - Y
         dW = (1 / m) * (dZ @ X.T)
