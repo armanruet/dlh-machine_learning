@@ -1,28 +1,55 @@
 #!/usr/bin/env python3
-"""Defines a neural network with one hidden layer"""
+"""
+Write a class that defines a neural network with one hidden layer
+performing binary classification (Based on 8-neural_network.py)
+"""
 
 import numpy as np
 
 
 class NeuralNetwork:
-    """Defines a neural network classification"""
+    """
+nx is the number of input features
+If nx is not an integer, raise a TypeError with the exception:
+nx must be an integer
+If nx is less than 1, raise a ValueError with the exception:
+nx must be a positive integer
+
+nodes is the number of nodes in the hidden layer
+If nodes is not an integer, raise a TypeError with the exception:
+nodes must be an integer
+If nodes is less than 1, raise a ValueError with the exception:
+nodes must be a positive integer
+
+All exceptions should be raised in the order listed above
+    """
 
     def __init__(self, nx, nodes):
-        if type(nx) is not int:
+        """
+Upon instantiation, it should be initialized to 0.
+        """
+        if not isinstance(nx, int):
             raise TypeError("nx must be an integer")
         if nx < 1:
             raise ValueError("nx must be a positive integer")
-        if type(nodes) is not int:
+        # nodes checks
+        if not isinstance(nodes, int):
             raise TypeError("nodes must be an integer")
         if nodes < 1:
             raise ValueError("nodes must be a positive integer")
-        self.W1 = np.random.randn(nodes, nx)
-        self.b1 = np.zeros((nodes, 1))
 
-        self.A1 = 0
-        self.W2 = np.random.randn(1, nodes)
-        self.b2 = 0
-        self.A2 = 0
+        # init neuron "Hidden Layer" x nodes
+        # weights (W1) is of shape (nodes, nx), drawing from std normal
+        self.__W1 = np.random.standard_normal(size=(nodes, nx))
+        # neutral bias (b) init
+        self.__b1 = np.zeros((nodes, 1))
+        # neuron answer (A) init
+        self.__A1 = 0
+        # init neuron 2 "Output Layer"
+        # weights (W2) is of shape (1, nodes), drawing from std normal
+        self.__W2 = np.random.standard_normal(size=(1, nodes))
+        self.__b2 = 0
+        self.__A2 = 0
 
     @property
     def W1(self):
