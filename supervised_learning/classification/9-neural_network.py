@@ -26,30 +26,24 @@ class NeuralNetwork:
 
     @property
     def W1(self):
-        """Return the hidden layer's weights."""
         return self.__W1
 
     @property
     def b1(self):
-        """Return the hidden layer's bias."""
         return self.__b1
 
     @property
     def A1(self):
-        """Return the hidden layer's activated output."""
         return self.__A1
 
     @property
     def W2(self):
-        """Return the output neuron's weights."""
         return self.__W2
 
     @property
     def b2(self):
-        """Return the output neuron's bias."""
         return self.__b2
 
     @property
     def A2(self):
-        """Return the output neuron's activated output."""
         return self.__A2
