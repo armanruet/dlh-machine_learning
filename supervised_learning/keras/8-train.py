@@ -33,7 +33,7 @@ def train_model(network, data, labels, batch_size, epochs,
 # Save the best model based on validation loss.
     # This only makes sense if validation_data exists and filepath is provided.
     if save_best and validation_data is not None and filepath is not None:
-        checkpoint = tf.keras.callbacks.ModelCheckpoint(
+        checkpoint = K.callbacks.ModelCheckpoint(
             filepath=filepath,
             monitor='val_loss',
             save_best_only=True,
