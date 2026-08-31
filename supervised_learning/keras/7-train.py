@@ -53,7 +53,7 @@ def train_model(network, data, labels, batch_size, epochs,
             return alpha / (1 + decay_rate * epoch)
 
         # verbose=1 makes Keras print the learning rate update message.
-        learning_rate_callback = tf.keras.callbacks.LearningRateScheduler(
+        learning_rate_callback = K.callbacks.LearningRateScheduler(
             scheduler,
             verbose=1
         )
