@@ -1,13 +1,24 @@
 #!/usr/bin/env python3
 """
-RMSProp Upgraded
+Module containing function to set up RMSProp optimizer in TensorFlow.
 """
 import tensorflow as tf
 
 
-def create_RMSProp_op(loss, alpha, beta2, epsilon):
-    """function that implements RMSProp gradient descent in tensorflow"""
-    return tf.train.RMSPropOptimizer(
-        learning_rate=alpha, decay=beta2, momentum=0.0, epsilon=epsilon,
-        use_locking=False, centered=False, name='RMSProp'
-    ).minimize(loss)
+def create_RMSProp_op(alpha, beta2, epsilon):
+    """
+    Sets up the RMSProp optimization algorithm in TensorFlow.
+
+    Parameters:
+    - alpha: learning rate
+    - beta2: RMSProp weight (discounting factor / rho)
+    - epsilon: small number to avoid division by zero
+
+    Returns:
+    - optimizer: an instance of tf.keras.optimizers.RMSprop
+    """
+    return tf.keras.optimizers.RMSprop(
+        learning_rate=alpha,
+        rho=beta2,
+        epsilon=epsilon
+    )
