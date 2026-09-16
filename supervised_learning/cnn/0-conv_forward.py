@@ -4,6 +4,7 @@ import numpy as np
 
 
 def conv_forward(A_prev, W, b, activation, padding="same", stride=(1, 1)):
+    """defining the func"""
     # 1. Unpack dimensions
     m, h_prev, w_prev, c_prev = A_prev.shape
     kh, kw, _, c_new = W.shape
