@@ -13,7 +13,7 @@ def autoencoder(input_dims, filters, latent_dims):
     x = encoder_input
     for units in filters:
         # Conv2D: 3x3 kernel, same padding, ReLU
-        x = keras.layers.Conv2D(filters=units, kernel_size=(3, 3),
+        x = keras.layers.Conv2D(units, kernel_size=(3, 3),
                                 padding='same', activation='relu')(x)
         # MaxPooling2D: 2x2 window, stride 2 -> halves spatial dims
         x = keras.layers.MaxPooling2D(pool_size=(2, 2))(x)
