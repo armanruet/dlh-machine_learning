@@ -5,6 +5,7 @@ import numpy as np
 
 
 class RNNCell:
+    """RNNCell"""
     def __init__(self, i, h, o):
         """
         Initialize the RNN cell.
