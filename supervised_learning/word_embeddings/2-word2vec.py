@@ -14,7 +14,7 @@ def word2vec_model(sentences, vector_size=100, min_count=5, window=5,
         min_count=min_count,
         window=window,
         negative=negative,
-        sg=0 if cbow else 1,
+        sg=not cbow,
         seed=seed,
         workers=workers
     )
