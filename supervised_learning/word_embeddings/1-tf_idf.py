@@ -1,57 +1,64 @@
 #!/usr/bin/env python3
-"""TF-IDF"""
-import numpy as np
+""" Creates a TF-IDF embedding matrix. """
 import re
+import numpy as np
 
 
 def tf_idf(sentences, vocab=None):
-    """def the func"""
-    words_per_sentence = [
-        re.findall(r'\b[a-z]+\b', sentence.lower())
-        for sentence in sentences
-    ]
+    """ Create a TF-IDF embedding matrix.
+
+    Args:
+        sentences : List of sentences to analyze.
+        vocab : List of vocabulary words to use. If None, all words
+            from the sentences are used.
+
+    Returns:
+        tuple: (embeddings, features)
+            embeddings (numpy.ndarray): Matrix of shape (s, f).
+            features (numpy.ndarray): Features used for the embeddings.
+    """
+    processed = []
+
+    for sentence in sentences:
+        sentence = sentence.lower()
+        sentence = re.sub(r"'s\b", "", sentence)
+        words = re.findall(r"[a-z]+", sentence)
+        processed.append(words)
 
     if vocab is None:
-        features = sorted(set(
-            word
-            for words in words_per_sentence
-            for word in words
-        ))
+        features = sorted({word for words in processed for word in words})
     else:
         features = list(vocab)
 
-    s = len(sentences)
-    f = len(features)
+    n_docs = len(sentences)
+    df = {word: 0 for word in features}
 
-    tf = np.zeros((s, f), dtype=float)
+    for words in processed:
+        seen = set(words)
+        for word in features:
+            if word in seen:
+                df[word] += 1
 
-    word_to_index = {
-        word: index for index, word in enumerate(features)
-    }
+    idf = {}
+    for word in features:
+        idf[word] = np.log((1 + n_docs) / (1 + df[word])) + 1
 
-    for i, words in enumerate(words_per_sentence):
+    embeddings = np.zeros((n_docs, len(features)), dtype=float)
+
+    word_to_index = {word: idx for idx, word in enumerate(features)}
+
+    for i, words in enumerate(processed):
+        tf = {}
         for word in words:
             if word in word_to_index:
-                tf[i, word_to_index[word]] += 1
+                tf[word] = tf.get(word, 0) + 1
 
-    # Number of documents containing each word
-    df = np.count_nonzero(tf > 0, axis=0)
+        for word, count in tf.items():
+            idx = word_to_index[word]
+            embeddings[i, idx] = count * idf[word]
 
-    # Smoothed inverse document frequency
-    idf = np.log((1 + s) / (1 + df)) + 1
-
-    # TF-IDF weights
-    embeddings = tf * idf
-
-    # L2 normalization of each sentence vector
-    norms = np.linalg.norm(embeddings, axis=1, keepdims=True)
-
-    # Avoid division by zero for empty vectors
-    embeddings = np.divide(
-        embeddings,
-        norms,
-        out=np.zeros_like(embeddings),
-        where=norms != 0
-    )
+        norm = np.sqrt(np.sum(embeddings[i] ** 2))
+        if norm > 0:
+            embeddings[i] /= norm
 
     return embeddings, np.array(features)
