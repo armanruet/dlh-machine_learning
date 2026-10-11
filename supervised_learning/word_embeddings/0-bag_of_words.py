@@ -33,7 +33,8 @@ def bag_of_words(sentences, vocab=None):
                     counts[word] = 1
 
         for word, count in counts.items():
-            idx = vocab.index(word)
-            embeddings[i][idx] = count
+            if word in vocab:
+                idx = vocab.index(word)
+                embeddings[i][idx] = count
 
     return embeddings, np.array(vocab)
