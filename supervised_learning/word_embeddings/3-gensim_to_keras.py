@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
-"""
-3-gensim_to_keras.py
-"""
-# from gensim.models import Word2Vec
-# Install keras with: pip install --user keras==2.2.5
-# for this task to work
+"""Converts a Gensim Word2Vec model to a Keras Embedding layer."""
+
+import tensorflow as tf
 
 
 def gensim_to_keras(model):
-    """function that converts a gensim word2vec model
-    to a trainable keras layer"""
+    """Convert a trained gensim Word2Vec model to a Keras Embedding layer."""
 
-    return model.wv.get_keras_embedding(train_embeddings=True)
+    weights = model.wv.vectors
+
+    layer = tf.keras.layers.Embedding(
+        input_dim=weights.shape[0],
+        output_dim=weights.shape[1],
+        weights=[weights],
+        trainable=True
+    )
+
+    return layer
