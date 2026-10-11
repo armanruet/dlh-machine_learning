@@ -20,7 +20,7 @@ def bag_of_words(sentences, vocab=None):
     # Step B: Create the embedding matrix
     s = len(sentences)
     f = len(vocab)
-    embeddings = np.zeros((s, f))
+    embeddings = np.zeros((s, f), dtype=int)
 
     # Step C: Fill in counts for each sentence
     for i, sentence in enumerate(sentences):
@@ -36,4 +36,4 @@ def bag_of_words(sentences, vocab=None):
             idx = vocab.index(word)
             embeddings[i][idx] = count
 
-    return embeddings, vocab
+    return embeddings, np.array(vocab)
