@@ -2,7 +2,7 @@
 """
 3-gensim_to_keras.py
 """
-from gensim.models import Word2Vec
+# from gensim.models import Word2Vec
 # Install keras with: pip install --user keras==2.2.5
 # for this task to work
 
