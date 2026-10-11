@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-from gensim.models import FastText
+"""task 4"""
+import gensim
 
 
 def fasttext_model(
@@ -14,7 +15,7 @@ def fasttext_model(
     workers=1
 ):
     """def func"""
-    model = FastText(
+    model = gensim.models.FastText(
         sentences=sentences,
         vector_size=vector_size,
         min_count=min_count,
@@ -24,6 +25,14 @@ def fasttext_model(
         epochs=epochs,
         seed=seed,
         workers=workers
+    )
+
+    model.build_vocab(corpus_iterable=sentences)
+
+    model.train(
+        corpus_iterable=sentences,
+        total_examples=model.corpus_count,
+        epochs=epochs
     )
 
     return model
