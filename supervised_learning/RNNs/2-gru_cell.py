@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""GRU"""
+"""GRU problem"""
 import numpy as np
 
 
 class GRUCell:
-    """GRUCELL"""
+    """GRUCELL CLass"""
+
     def __init__(self, i, h, o):
-        """Init"""
+        """Init the func"""
+
         # Weights initialized in the required order
         self.Wz = np.random.randn(i + h, h)
         self.Wr = np.random.randn(i + h, h)
