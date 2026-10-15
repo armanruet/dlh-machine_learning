@@ -20,38 +20,32 @@ class GRUCell:
         self.by = np.zeros((1, o))
 
     def forward(self, h_prev, x_t):
-        """FOrward Pass"""
-        # Combine previous hidden state and current input
+        """ Perform forward propagation for one time step.
+
+        Args:
+            h_prev : Previous hidden state of shape (m, h).
+            x_t : Input data of shape (m, i).
+
+        Returns:
+            tuple: (h_next, y)
+                h_next is the next hidden state.
+                y is the output of the cell.
+        """
         concat = np.concatenate((h_prev, x_t), axis=1)
 
-        # Update gate
-        z = 1 / (1 + np.exp(-(
-            np.matmul(concat, self.Wz) + self.bz
-        )))
+        z = np.matmul(concat, self.Wz) + self.bz
+        z = 1 / (1 + np.exp(-z))
 
-        # Reset gate
-        r = 1 / (1 + np.exp(-(
-            np.matmul(concat, self.Wr) + self.br
-        )))
+        r = np.matmul(concat, self.Wr) + self.br
+        r = 1 / (1 + np.exp(-r))
 
-        # Candidate hidden state
-        reset_hidden = r * h_prev
-        candidate_input = np.concatenate(
-            (reset_hidden, x_t), axis=1
-        )
+        concat_r = np.concatenate((r * h_prev, x_t), axis=1)
+        h_tilde = np.tanh(np.matmul(concat_r, self.Wh) + self.bh)
 
-        h_tilde = np.tanh(
-            np.matmul(candidate_input, self.Wh) + self.bh
-        )
+        h_next = (1 - z) * h_prev + z * h_tilde
 
-        # Combine previous state and candidate state
-        h_next = z * h_prev + (1 - z) * h_tilde
-
-        # Calculate output scores
-        q = np.matmul(h_next, self.Wy) + self.by
-
-        # Apply numerically stable softmax
-        exp_q = np.exp(q - np.max(q, axis=1, keepdims=True))
-        y = exp_q / np.sum(exp_q, axis=1, keepdims=True)
+        y = np.matmul(h_next, self.Wy) + self.by
+        y = np.exp(y - np.max(y, axis=1, keepdims=True))
+        y = y / np.sum(y, axis=1, keepdims=True)
 
         return h_next, y
